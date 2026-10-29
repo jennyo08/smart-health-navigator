@@ -67,39 +67,79 @@
     }
 
     .nav-inner {
-      min-height: 76px;
+      min-height: 68px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 9px;
+      flex: 0 0 auto;
+      white-space: nowrap;
       font-weight: 800;
-      font-size: 19px;
+      font-size: 17px;
       color: var(--navy);
     }
 
     .brand-icon {
       display: grid;
       place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
       background: var(--mint);
       color: var(--primary);
-      font-size: 26px;
+      font-size: 23px;
     }
 
     .nav-links {
       display: flex;
+      flex: 1 1 auto;
       align-items: center;
-      gap: 26px;
-      font-size: 14px;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 12.5px;
       font-weight: 700;
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .nav-links .nav-cta {
+      flex: 0 0 auto;
+      padding: 9px 12px;
+    }
+
+    @media (min-width: 801px) and (max-width: 1100px) {
+      .nav-inner {
+        gap: 20px;
+      }
+
+      .brand {
+        gap: 7px;
+        font-size: 15px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 21px;
+      }
+
+      .nav-links {
+        gap: 9px;
+        font-size: 11.5px;
+      }
+
+      .nav-links .nav-cta {
+        padding: 8px 9px;
+      }
     }
 
     .nav-links a:hover {
@@ -568,7 +608,7 @@
       .nav-links {
         display: none;
         position: absolute;
-        top: 76px;
+        top: 68px;
         left: 0;
         right: 0;
         padding: 20px 4%;
@@ -642,6 +682,107 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* Additional healthcare navigation sections */
+    .navigator-section {
+      padding: 76px 0;
+    }
+
+    .navigator-section:nth-of-type(even) {
+      background: #edf9f7;
+    }
+
+    .navigator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .navigator-card {
+      padding: 22px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 6px 22px rgba(22, 50, 79, 0.035);
+    }
+
+    .navigator-card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .navigator-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .navigator-search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 12px;
+    }
+
+    .navigator-search-row input {
+      flex: 1;
+      min-width: 190px;
+      padding: 12px 14px;
+      border: 1px solid #cad9e2;
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    .navigator-search-row button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: var(--primary);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .navigator-search-row button:hover {
+      background: var(--primary-dark);
+    }
+
+    .navigator-emergency {
+      margin-top: 25px;
+      padding: 24px;
+      background: #fff4f1;
+      border: 1px solid #f3d2cc;
+      border-left: 5px solid #d93025;
+      border-radius: 15px;
+      color: #713b34;
+    }
+
+    .navigator-emergency h2,
+    .navigator-emergency h3 {
+      color: #923f34;
+      margin-bottom: 8px;
+    }
+
+    .navigator-notice {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+
+    .navigator-card a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 800px) {
+      .navigator-section {
+        padding: 55px 0;
+      }
+    }
+
   </style>
 </head>
 
@@ -663,6 +804,9 @@
         <a href="#features">Features</a>
         <a href="#assistant">AI Assistant</a>
         <a href="#how-it-works">How It Works</a>
+        <a href="#facilities">Hospitals</a>
+        <a href="#firstaid">First Aid</a>
+        <a href="#news">Health News</a>
         <a class="nav-cta" href="#assistant">Ask a Question ↗</a>
       </nav>
     </div>
@@ -885,6 +1029,111 @@
         </div>
       </div>
     </section>
+
+    <section class="navigator-section" id="facilities">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">HEALTHCARE NEAR YOU</span>
+          <h2>🏥 Find Nearby Health Facilities</h2>
+          <p>Enter your city or town to find hospitals, clinics and pharmacies.</p>
+        </div>
+
+        <div class="navigator-search-row">
+          <input id="facilityCity" type="text" placeholder="e.g. Rohtak, Haryana"
+            aria-label="City or town">
+          <button type="button" onclick="findHealthPlaces('hospital')">Hospitals</button>
+          <button type="button" onclick="findHealthPlaces('clinic')">Clinics</button>
+          <button type="button" onclick="findHealthPlaces('pharmacy')">Pharmacies</button>
+        </div>
+        <p class="navigator-notice">
+          Results open in Google Maps. Confirm the facility's location, availability
+          and emergency services before travelling.
+        </p>
+
+        <div class="navigator-emergency">
+          <h3>🚨 Emergency Help</h3>
+          <p>If someone is in immediate danger in India, call <strong>112 — National Emergency Response</strong>.</p>
+          <p style="margin-top: 14px;">
+            <a class="btn" href="tel:112">Call 112</a>
+          </p>
+          <p class="navigator-notice">Do not delay emergency care to use this website.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="navigator-section" id="firstaid">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">BASIC SAFETY INFORMATION</span>
+          <h2>🩹 First-Aid Instructions</h2>
+          <p>Quick educational guidance for common emergencies. Contact emergency services when needed.</p>
+        </div>
+
+        <div class="navigator-grid">
+          <article class="navigator-card">
+            <h3>🔥 Burns</h3>
+            <p>Cool the burn under cool running water for 20 minutes. Remove nearby jewellery or clothing that is not stuck to the skin. Do not apply ice, toothpaste or butter.</p>
+          </article>
+          <article class="navigator-card">
+            <h3>🩸 Severe Bleeding</h3>
+            <p>Call emergency services and apply firm, continuous pressure with clean gauze or cloth. Do not remove soaked dressings; add more on top.</p>
+          </article>
+          <article class="navigator-card">
+            <h3>😵 Unconscious Person</h3>
+            <p>Check responsiveness and normal breathing. Call 112. If they are not breathing normally, start CPR and follow the emergency call handler's instructions.</p>
+          </article>
+          <article class="navigator-card">
+            <h3>🫁 Choking</h3>
+            <p>If a person cannot speak, breathe or cough effectively, call emergency services and give age-appropriate choking first aid if trained. Do not blindly sweep inside the mouth.</p>
+          </article>
+          <article class="navigator-card">
+            <h3>🧠 Possible Stroke</h3>
+            <p>Look for sudden facial drooping, arm weakness or speech difficulty. Call 112 immediately and note when symptoms began. Do not give food, drink or medication.</p>
+          </article>
+          <article class="navigator-card">
+            <h3>☀️ Heat Illness</h3>
+            <p>Move the person to a cool place. For confusion, collapse or suspected heatstroke, call 112 and cool them rapidly while awaiting help. Do not give fluids to someone confused or unconscious.</p>
+          </article>
+        </div>
+        <p class="navigator-notice">
+          Educational guidance only. First aid depends on the person's age and circumstances.
+          Follow emergency professionals' instructions.
+        </p>
+      </div>
+    </section>
+
+
+    <section class="navigator-section" id="news">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">TRUSTED SOURCES</span>
+          <h2>📰 Health News &amp; Updates</h2>
+          <p>Read health reports and public-health updates from established sources.</p>
+        </div>
+
+        <div class="navigator-grid">
+          <article class="navigator-card">
+            <h3>World Health Organization</h3>
+            <p>Global health alerts, disease updates and research.</p>
+            <p style="margin-top: 14px;"><a href="https://www.who.int/news" target="_blank" rel="noopener noreferrer">Read WHO News ↗</a></p>
+          </article>
+          <article class="navigator-card">
+            <h3>Ministry of Health, India</h3>
+            <p>Indian health programmes, notices and announcements.</p>
+            <p style="margin-top: 14px;"><a href="https://mohfw.gov.in/" target="_blank" rel="noopener noreferrer">Visit Ministry ↗</a></p>
+          </article>
+          <article class="navigator-card">
+            <h3>National Centre for Disease Control</h3>
+            <p>Disease surveillance and public-health information.</p>
+            <p style="margin-top: 14px;"><a href="https://ncdc.mohfw.gov.in/" target="_blank" rel="noopener noreferrer">Visit NCDC ↗</a></p>
+          </article>
+        </div>
+        <p class="navigator-notice">
+          These are source links, not a live news feed. Check publication dates and official advisories before relying on an update.
+        </p>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -1034,6 +1283,25 @@
         chatQuestion.focus();
       });
     });
+
+    // Nearby hospitals, clinics and pharmacies
+    function findHealthPlaces(type) {
+      const city = document.getElementById("facilityCity").value.trim();
+      if (!city) {
+        alert("Please enter your city or town first.");
+        document.getElementById("facilityCity").focus();
+        return;
+      }
+
+      const query = encodeURIComponent(type + " near " + city);
+      window.open(
+        "https://www.google.com/maps/search/?api=1&query=" + query,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+
+
   </script>
 </body>
 </html>
